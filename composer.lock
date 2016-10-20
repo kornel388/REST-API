@@ -4,9 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25c8fb73f5b0be8c31abfcc9fea92233",
-    "content-hash": "5e16cb7781829836a704bd8767830833",
+    "hash": "6ea13edf973896f4d64dde38a0fed5f7",
+    "content-hash": "3bddd84ed9d91c5f12d9dda8b08310da",
     "packages": [
+        {
+            "name": "bryanjhv/slim-session",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bryanjhv/slim-session.git",
+                "reference": "df4282d511e953ae9a3ed526e125db27c0ac5af6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bryanjhv/slim-session/zipball/df4282d511e953ae9a3ed526e125db27c0ac5af6",
+                "reference": "df4282d511e953ae9a3ed526e125db27c0ac5af6",
+                "shasum": ""
+            },
+            "require": {
+                "slim/slim": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan Horna",
+                    "email": "bryanjhv@gmail.com",
+                    "homepage": "https://bryanjhv.xyz",
+                    "role": "developer"
+                }
+            ],
+            "description": "Session middleware and helper for Slim framework 3.",
+            "homepage": "https://github.com/bryanjhv/slim-session",
+            "keywords": [
+                "helper",
+                "middleware",
+                "session",
+                "slim"
+            ],
+            "time": "2016-06-24 02:35:16"
+        },
         {
             "name": "container-interop/container-interop",
             "version": "1.1.0",

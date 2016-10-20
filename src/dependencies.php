@@ -27,3 +27,16 @@ $container['db'] = function ($c) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
+
+//Controllers
+$container['AccountController'] = function($container) {
+  return new \App\Controllers\AccountController($container);
+};
+
+$container['PostController'] = function($container) {
+  return new \App\Controllers\PostController($container);
+};
+
+$container['CommentController'] = function($container) {
+  return new \App\Controllers\CommentController($container);
+};
