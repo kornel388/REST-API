@@ -40,7 +40,7 @@ class PostController extends Controller
         $query = $this->db->prepare($sql);
         $query->bindParam("title", $input['title']);
         $query->bindParam("content", $input['content']);
-        $query->bindParam("id_user", $id_user);
+        $query->bindParam("id_user", $input['id_user']);
         $query->execute();
     //    $input['id'] = $this->db->lastInsertId();
         return $this->response->withJson("Post został pomyślnie dodany");

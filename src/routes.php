@@ -31,10 +31,10 @@ $app->get('/v1/session', 'AccountController:checkSession');
 */
 
 //Get all comments from post
-$app->get('/v1/comments','CommentController:index');
+$app->post('/v1/comments','CommentController:index');
 
 //Get this comment`
-$app->get('/v1/comment/[{id}]', 'CommentController:getComment');
+$app->post('/v1/comment/[{id}]', 'CommentController:getComment');
 
 //Add new comments
 $app->post('/v1/comment', 'CommentController:addComment');

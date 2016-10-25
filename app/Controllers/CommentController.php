@@ -6,7 +6,9 @@ class CommentController extends Controller
 {
   public function index($request, $response,$args) {
     try {
-      $query = $this->db->prepare("SELECT * FROM comments");
+      $input = $request->getParsedBody();
+      $query = $this->db->prepare("SELECT * FROM comments WHERE id_post=:id_post");
+      $query->bindParam("id_post", $input['id_post']);
       $query->execute();
       $posts = $query->fetchAll();
       return $this->response->withJson($posts);
@@ -30,7 +32,7 @@ class CommentController extends Controller
 
   public function addComment($request, $response,$arg) {
     try {
-        $id_user = "2";
+
 
         $input = $request->getParsedBody();
         $sql = "INSERT INTO comments (`id_user`,`id_post`,`content`) VALUES (:id_user, :id_post, :content)";
