@@ -8,12 +8,13 @@ class PostController extends Controller
 
   public function index($request, $response,$args) {
     try {
-      $query = $this->db->prepare("SELECT * FROM posts");
+      $query = $this->db->prepare("SELECT * FROM posts ORDER BY id_post DESC");
       $query->execute();
       $posts = $query->fetchAll();
       return $this->response->withJson($posts);
-    } catch (Exception $e) {
-        echo $e;
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
   }
 
@@ -24,25 +25,27 @@ class PostController extends Controller
       $query->execute();
       $posts = $query->fetchObject();
       return $this->response->withJson($posts);
-      echo $_SESSION['account'];
-    } catch (Exception $e) {
-      echo $e;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
     }
 
   }
 
   public function addPost($request, $response,$arg) {
     try {
+      $session = new \RKA\Session();
+        $id_user = $session->id_user;
         $input = $request->getParsedBody();
-        $sql = "INSERT INTO posts (`title`,`content`) VALUES (:title, :content)";
+        $sql = "INSERT INTO posts (`title`,`content`,`id_user`) VALUES (:title, :content, :id_user)";
         $query = $this->db->prepare($sql);
         $query->bindParam("title", $input['title']);
         $query->bindParam("content", $input['content']);
+        $query->bindParam("id_user", $id_user);
         $query->execute();
     //    $input['id'] = $this->db->lastInsertId();
         return $this->response->withJson("Post został pomyślnie dodany");
-    } catch (Exception $e) {
-      echo $e;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
     }
 
   }
@@ -59,7 +62,7 @@ class PostController extends Controller
             $input['id'] = $args['id'];
             return $this->response->withJson("Post został pomyślnie zaktualizowany");
     } catch (Exception $e) {
-      echo $e;
+      echo $e->getMessage();
     }
   }
   public function deletePost($request, $response,$arg) {
@@ -69,8 +72,8 @@ class PostController extends Controller
       $sth->execute();
       return $this->response->withJson("Post are deleted  ");
 
-    } catch (Exception $e) {
-      echo $e;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
     }
   }
 

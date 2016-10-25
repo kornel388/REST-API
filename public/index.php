@@ -11,11 +11,24 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
-session_start();
+
 
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
+// $session = new \RKA\Session();
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+// $corsOptions = array(
+//     "origin" => "*",
+//     "exposeHeaders" => array("Content-Type", "X-Requested-With", "X-authentication", "X-client"),
+//     "allowMethods" => array('GET', 'POST', 'PUT', 'DELETE', 'OPTIONS')
+// );
+// $cors = new \CorsSlim\CorsSlim($corsOptions);
+//
+// $app->add($cors);
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
   public function index($request, $response,$args) {
     try {
@@ -15,58 +15,58 @@ class CommentsController extends Controller
     }
   }
 
-  public function getPost($request, $response,$args) {
+  public function getComment($request, $response,$args) {
     try {
-      $query = $this->db->prepare("SELECT * FROM posts WHERE id_post=:id");
+      $query = $this->db->prepare("SELECT * FROM comments WHERE id_comment=:id");
       $query->bindParam("id", $args['id']);
       $query->execute();
       $posts = $query->fetchObject();
       return $this->response->withJson($posts);
-      echo $_SESSION['account'];
     } catch (Exception $e) {
       echo $e;
     }
 
   }
 
-  public function addPost($request, $response,$arg) {
+  public function addComment($request, $response,$arg) {
     try {
+        $id_user = "2";
+
         $input = $request->getParsedBody();
-        $sql = "INSERT INTO posts (`title`,`content`) VALUES (:title, :content)";
+        $sql = "INSERT INTO comments (`id_user`,`id_post`,`content`) VALUES (:id_user, :id_post, :content)";
         $query = $this->db->prepare($sql);
-        $query->bindParam("title", $input['title']);
+        $query->bindParam("id_user", $input['id_user']);
+        $query->bindParam("id_post", $input['id_post']);
         $query->bindParam("content", $input['content']);
         $query->execute();
     //    $input['id'] = $this->db->lastInsertId();
-        return $this->response->withJson("Post został pomyślnie dodany");
+        return $this->response->withJson("Komentarz został pomyślnie dodany");
     } catch (Exception $e) {
       echo $e;
     }
 
   }
 
-  public function updatePost($request,$response,$arg) {
+  public function updateComment($request,$response,$arg) {
     try {
             $input = $request->getParsedBody();
-            $sql = "UPDATE posts SET title=:title, content=:content WHERE id_post=:id";
+            $sql = "UPDATE comments SET content=:content WHERE id_comment=:id";
             $query = $this->db->prepare($sql);
             $query->bindParam("id", $args['id']);
-            $query->bindParam("title", $input['title']);
             $query->bindParam("content", $input['content']);
             $query->execute();
             $input['id'] = $args['id'];
-            return $this->response->withJson("Post został pomyślnie zaktualizowany");
+            return $this->response->withJson("Komentarz został pomyślnie zaktualizowany");
     } catch (Exception $e) {
       echo $e;
     }
   }
-  public function deletePost($request, $response,$arg) {
+  public function deleteComment($request, $response,$arg) {
     try {
-      $sth = $this->db->prepare("DELETE FROM posts WHERE id_post=:id");
+      $sth = $this->db->prepare("DELETE FROM comments WHERE id_comment=:id");
       $sth->bindParam("id", $args['id']);
       $sth->execute();
-      return $this->response->withJson("Post are deleted  ");
-
+      return $this->response->withJson("Komentarz usunięty");
     } catch (Exception $e) {
       echo $e;
     }

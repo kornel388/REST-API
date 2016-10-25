@@ -28,6 +28,7 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
+
 //Controllers
 $container['AccountController'] = function($container) {
   return new \App\Controllers\AccountController($container);

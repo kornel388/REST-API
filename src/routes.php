@@ -20,10 +20,27 @@ $app->delete('/v1/post/[{id}]', 'PostController:deletePost');
 * Later maybe password resend
 */
 
-$app->post('/v2/login', 'AccountController:login');
-$app->post('/v2/register', 'AccountController:register');
+$app->post('/v1/login', 'AccountController:login');
+$app->post('/v1/register', 'AccountController:register');
+$app->post('/v1/logout', 'AccountController:logout');
+$app->get('/v1/session', 'AccountController:checkSession');
 
 /*
 * Comments and subcomments controll
 *
-/*
+*/
+
+//Get all comments from post
+$app->get('/v1/comments','CommentController:index');
+
+//Get this comment`
+$app->get('/v1/comment/[{id}]', 'CommentController:getComment');
+
+//Add new comments
+$app->post('/v1/comment', 'CommentController:addComment');
+
+//Update this comment
+$app->put('/v1/comment/[{id}]', 'CommentController:updateComment');
+
+//Delete comment
+$app->delete('/v1/comment/[{id}]', 'CommentController:deleteComment');
