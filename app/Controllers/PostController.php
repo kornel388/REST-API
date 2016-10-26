@@ -68,13 +68,13 @@ class PostController extends Controller
   public function deletePost($request, $response,$arg) {
     try {
       $sth = $this->db->prepare("DELETE FROM posts WHERE id_post=:id");
-      $sth->bindParam("id", $args['id']);
+      $sth->bindParam("id", $arg['id']);
       $sth->execute();
-      return $this->response->withJson("Post are deleted  ");
-
-    } catch (PDOException $e) {
-      echo $e->getMessage();
+      return $this->response->withJson("Komentarz usunięty");
+    } catch (Exception $e) {
+      echo $e;
     }
   }
+  
 
 }

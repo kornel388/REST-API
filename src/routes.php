@@ -25,6 +25,9 @@ $app->post('/v1/register', 'AccountController:register');
 $app->post('/v1/logout', 'AccountController:logout');
 $app->get('/v1/session', 'AccountController:checkSession');
 
+//dashboard
+$app->post('/v1/dashboard', 'AccountController:dashboard');
+
 /*
 * Comments and subcomments controll
 *

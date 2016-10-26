@@ -54,7 +54,7 @@ class CommentController extends Controller
             $input = $request->getParsedBody();
             $sql = "UPDATE comments SET content=:content WHERE id_comment=:id";
             $query = $this->db->prepare($sql);
-            $query->bindParam("id", $args['id']);
+            $query->bindParam("id", $arg['id']);
             $query->bindParam("content", $input['content']);
             $query->execute();
             $input['id'] = $args['id'];
@@ -66,7 +66,7 @@ class CommentController extends Controller
   public function deleteComment($request, $response,$arg) {
     try {
       $sth = $this->db->prepare("DELETE FROM comments WHERE id_comment=:id");
-      $sth->bindParam("id", $args['id']);
+      $sth->bindParam("id", $arg['id']);
       $sth->execute();
       return $this->response->withJson("Komentarz usunięty");
     } catch (Exception $e) {

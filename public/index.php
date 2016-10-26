@@ -19,7 +19,7 @@ $app = new \Slim\App($settings);
 // $session = new \RKA\Session();
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: origin,X-Parse-REST-API-Key, X-Parse-Application-Id, x-requested-with, Content-Type');
+header('Access-Control-Allow-Headers: origin, Content-Type');
 header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 
 // $corsOptions = array(
